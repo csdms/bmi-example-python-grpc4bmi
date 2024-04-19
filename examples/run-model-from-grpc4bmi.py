@@ -12,7 +12,7 @@ import numpy as np
 from heat import BmiHeat
 from grpc4bmi.bmi_client_docker import BmiClientDocker
 
-DOCKER_IMAGE = "mdpiper/bmi-example-python-grpc4bmi"
+DOCKER_IMAGE = "bmi-example-python-grpc4bmi"
 BMI_PORT = 55555
 REPO_PATH = pathlib.Path("/opt/bmi-example-python")
 CONFIG_FILE = REPO_PATH / "examples" / "heat.yaml"
@@ -25,7 +25,7 @@ x = BmiClientDocker(image=DOCKER_IMAGE, image_port=BMI_PORT, work_dir=".")
 print(x.get_component_name())
 
 # Start the `Heat` model through its BMI using a configuration file.
-x.initialize(CONFIG_FILE)
+x.initialize(str(CONFIG_FILE))
 
 # Show the input and output variables for the component.
 print(x.get_input_var_names())
