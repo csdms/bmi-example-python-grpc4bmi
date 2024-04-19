@@ -1,5 +1,5 @@
 # Set up a grpc4bmi server to run the Python BMI example.
-FROM mdpiper/bmi-example-python:0.2
+FROM mdpiper/bmi-example-python:0.3
 
 LABEL author="Mark Piper"
 LABEL email="mark.piper@colorado.edu"
