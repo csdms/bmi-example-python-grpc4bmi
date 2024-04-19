@@ -35,6 +35,9 @@ del m  # stop container cleanly
 If the image isn't found locally, it's pulled from Docker Hub
 (e.g., if you haven't already pulled it, try the `mdpiper/bmi-example-python-grpc4bmi` image from Docker Hub instead).
 
+For a more in-depth example of running the *Heat* model from grpc4bmi,
+see the [examples](./examples) directory.
+
 ## Developer notes
 
 A versioned, multiplatform image built from this repository is hosted on Docker Hub
