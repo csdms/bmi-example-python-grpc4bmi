@@ -32,18 +32,18 @@ m.get_component_name()
 del m  # stop container cleanly
 ```
 
-If the image isn't found locally, it's pulled from Docker Hub.
+If the image isn't found locally, it's pulled from Docker Hub
+(e.g., if you haven't already pulled it, try the `mdpiper/bmi-example-python-grpc4bmi` image from Docker Hub instead).
 
 ## Developer notes
 
-A versioned image built from this repository is hosted on Docker Hub
+A versioned, multiplatform image built from this repository is hosted on Docker Hub
 at [mdpiper/bmi-example-python-grpc4bmi](https://hub.docker.com/r/mdpiper/bmi-example-python-grpc4bmi).
 To tag, build, and push an update, run:
 ```
-docker build --tag mdpiper/bmi-example-python-grpc4bmi:tagname .
-docker push mdpiper/bmi-example-python-grpc4bmi:tagname
+docker buildx build --platform linux/amd64,linux/arm64 -t mdpiper/bmi-example-python-grpc4bmi:<tagname> --push .
 ```
-where `tagname` is, e.g., `0.1` or `latest`.
+where `<tagname>` is, e.g., `0.2` or `latest`.
 
 A user can pull this image from Docker Hub with:
 ```
