@@ -12,7 +12,7 @@ import numpy as np
 from heat import BmiHeat
 from grpc4bmi.bmi_client_docker import BmiClientDocker
 
-DOCKER_IMAGE = "bmi-example-python-grpc4bmi"
+DOCKER_IMAGE = "mdpiper/bmi-example-python-grpc4bmi"
 BMI_PORT = 55555
 REPO_PATH = pathlib.Path("/opt/bmi-example-python")
 CONFIG_FILE = REPO_PATH / "examples" / "heat.yaml"
