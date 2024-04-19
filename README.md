@@ -21,18 +21,18 @@ and the Python BMI example is installed into it.
 
 Use the grpc4bmi [Docker client](https://grpc4bmi.readthedocs.io/en/latest/container/usage.html#docker)
 to access the BMI methods of the containerized model.
-For example, in a Python session, try:
+For example, in a Python session, access the *Heat* model in the image built above with:
 ```python
 from grpc4bmi.bmi_client_docker import BmiClientDocker
 
 
-m = BmiClientDocker(image='mdpiper/bmi-example-python-grpc4bmi', image_port=55555, work_dir=".")
+m = BmiClientDocker(image='bmi-example-python-grpc4bmi', image_port=55555, work_dir=".")
 m.get_component_name()
 
-del m  # needed to stop container
+del m  # stop container cleanly
 ```
 
-The container is pulled from Docker Hub.
+If the image isn't found locally, it's pulled from Docker Hub.
 
 ## Developer notes
 
