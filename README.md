@@ -7,15 +7,18 @@ of the [Basic Model Interface](https://bmi.readthedocs.io)
 
 ## Build
 
-Build this example locally with:
+Build the server image locally with:
 ```
 docker build --tag bmi-example-python-grpc4bmi .
 ```
-The image is built on the [mdpiper/bmi-example-python](https://hub.docker.com/r/mdpiper/bmi-example-python) base image.
+The image is built on the [csdms/bmi-example-python](https://hub.docker.com/r/csdms/bmi-example-python) image.
 The OS is Linux/Ubuntu.
-`conda` and `mamba` are installed in `opt/conda`.
-The *base* environment is activated,
-and the Python BMI example is installed into it.
+`conda` and `mamba` are installed in `CONDA_DIR=opt/conda`,
+and the *base* environment is activated,
+The grpc4bmi Python server,
+as well as the Python BMI specification and example
+(consisting of the *Heat* model and a BMI implementation, *BmiHeat*)
+are installed into it.
 
 ## Run
 
@@ -29,15 +32,15 @@ Then, in a Python session, access the *Heat* model in the image built above with
 ```python
 from grpc4bmi.bmi_client_docker import BmiClientDocker
 
-
-m = BmiClientDocker(image='bmi-example-python-grpc4bmi', image_port=55555, work_dir=".")
+IMAGE_NAME = "bmi-example-python-grpc4bmi"
+m = BmiClientDocker(image=IMAGE_NAME, image_port=55555, work_dir=".")
 m.get_component_name()
 
 del m  # stop container cleanly
 ```
 
 If the image isn't found locally, it's pulled from Docker Hub
-(e.g., if you haven't already pulled it, try the `mdpiper/bmi-example-python-grpc4bmi` image).
+(e.g., try substituting `IMAGE_NAME="csdms/bmi-example-python-grpc4bmi"` above).
 
 For a more in-depth example of running the *Heat* model from grpc4bmi,
 see the [examples](./examples) directory.
@@ -45,14 +48,16 @@ see the [examples](./examples) directory.
 ## Developer notes
 
 A versioned, multiplatform image built from this repository is hosted on Docker Hub
-at [mdpiper/bmi-example-python-grpc4bmi](https://hub.docker.com/r/mdpiper/bmi-example-python-grpc4bmi).
-To tag, build, and push an update, run:
+at [csdms/bmi-example-python-grpc4bmi](https://hub.docker.com/r/csdms/bmi-example-python-grpc4bmi).
+When this repository is tagged,
+an image is automatically built and pushed to Docker Hub
+by the [release](./.github/workflows/release.yml) CI workflow.
+To manually build and push an update, run:
 ```
-docker buildx build --platform linux/amd64,linux/arm64 -t mdpiper/bmi-example-python-grpc4bmi:<tagname> --push .
+docker buildx build --platform linux/amd64,linux/arm64 -t csdms/bmi-example-python-grpc4bmi:latest --push .
 ```
-where `<tagname>` is, e.g., `0.2` or `latest`.
-
 A user can pull this image from Docker Hub with:
 ```
-docker pull mdpiper/bmi-example-python-grpc4bmi
+docker pull csdms/bmi-example-python-grpc4bmi
 ```
+optionally with the `latest` tag or with a version tag.
