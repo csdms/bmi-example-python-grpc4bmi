@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# Run the `Heat` model through its BMI.
+# Run the Python BMI example `Heat` model through its BMI.
 #
 # `Heat` models the diffusion of temperature on a uniform rectangular plate with
 # Dirichlet boundary conditions. View the model source code and its BMI at
@@ -9,10 +9,9 @@ import os
 import pathlib
 import numpy as np
 
-from heat import BmiHeat
 from grpc4bmi.bmi_client_docker import BmiClientDocker
 
-DOCKER_IMAGE = "mdpiper/bmi-example-python-grpc4bmi"
+DOCKER_IMAGE = "csdms/bmi-example-python-grpc4bmi"
 BMI_PORT = 55555
 REPO_PATH = pathlib.Path("/opt/bmi-example-python")
 CONFIG_FILE = REPO_PATH / "examples" / "heat.yaml"
