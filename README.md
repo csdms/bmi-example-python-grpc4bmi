@@ -61,3 +61,15 @@ A user can pull this image from Docker Hub with:
 docker pull csdms/bmi-example-python-grpc4bmi
 ```
 optionally with the `latest` tag or with a version tag.
+
+## What are the Basic Model Interface and grpc4bmi?
+
+The Basic Model Interface (BMI) is a set of functions for querying, modifying, running, and coupling models.
+Learn more at https://bmi.readthedocs.io/.
+
+grpc4bmi is a [gRPC](https://grpc.io/) wrapper for a model with a BMI.
+Learn more at https://grpc4bmi.readthedocs.io/.
+
+## Acknowledgment
+
+This work is supported by the U.S. National Science Foundation under Award No. [2103878](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2103878), *Frameworks: Collaborative Research: Integrative Cyberinfrastructure for Next-Generation Modeling Science*.
