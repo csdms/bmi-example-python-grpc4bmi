@@ -4,7 +4,8 @@ FROM csdms/grpc4bmi:0.3.0
 LABEL author="Mark Piper"
 LABEL email="mark.piper@colorado.edu"
 
-RUN pip install grpc4bmi
+RUN pip install grpc4bmi && \
+    pip cache purge
 
 WORKDIR /opt
 ENV BMI_PORT=55555
