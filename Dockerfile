@@ -1,5 +1,5 @@
-# Set up a grpc4bmi server to run the Python BMI example.
-FROM csdms/bmi-example-python:0.4.0
+# A grpc4bmi server for the bmi-example-python `Heat` model.
+FROM csdms/grpc4bmi:0.3.0
 
 LABEL author="Mark Piper"
 LABEL email="mark.piper@colorado.edu"
