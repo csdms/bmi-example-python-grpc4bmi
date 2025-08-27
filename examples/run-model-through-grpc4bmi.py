@@ -1,21 +1,25 @@
 #!/usr/bin/env python
-# Run the Python BMI example `Heat` model through its BMI.
+# Run the containerized Python `Heat` model through grpc4bmi.
 #
-# `Heat` models the diffusion of temperature on a uniform rectangular plate with
-# Dirichlet boundary conditions. View the model source code and its BMI at
-# https://github.com/csdms/bmi-example-python.
+# `Heat` models the diffusion of temperature on a uniform rectangular plate with Dirichlet boundary conditions.
+# View the model source code and its BMI at https://github.com/csdms/bmi-example-python.
 
+# Start by importing some helper libraries.
 import os
 import pathlib
 import numpy as np
 
+# Next, import the grpc4bmi Docker client.
 from grpc4bmi.bmi_client_docker import BmiClientDocker
 
-DOCKER_IMAGE = "csdms/bmi-example-python-grpc4bmi"
+# Set variables:
+# * which Docker image to use,
+# * the port exposed through the image, and
+# * the location in the image of the configuration file used for the model.
+DOCKER_IMAGE = "csdms/bmi-example-python-grpc4bmi:latest"
 BMI_PORT = 55555
 REPO_PATH = pathlib.Path("/opt/bmi-example-python")
 CONFIG_FILE = REPO_PATH / "examples" / "heat.yaml"
-
 
 # Create a model instance from the container.
 x = BmiClientDocker(image=DOCKER_IMAGE, image_port=BMI_PORT, work_dir=".")
@@ -73,7 +77,7 @@ x.get_value("plate_surface__temperature", temperature_flat)
 print(temperature_flat.reshape(shape))
 
 # Advance the model to some distant time.
-distant_time = 2.0
+distant_time = 10*x.get_time_step()
 while x.get_current_time() < distant_time:
     x.update()
 
