@@ -7,7 +7,7 @@
 
 Set up a [grpc4bmi](https://grpc4bmi.readthedocs.io) server
 to run a containerized version
-of the [Basic Model Interface](https://bmi.readthedocs.io)
+of the [Basic Model Interface](https://bmi.readthedocs.io) (BMI)
 [Python example](https://github.com/csdms/bmi-example-python).
 
 ## Build
@@ -16,19 +16,18 @@ Build the server image locally with:
 ```
 docker build --tag bmi-example-python-grpc4bmi .
 ```
-The image is built on the [csdms/bmi-example-python](https://hub.docker.com/r/csdms/bmi-example-python) image.
+The image is built on the [csdms/grpc4bmi](https://hub.docker.com/r/csdms/grpc4bmi) base image,
+which is built on the [condaforge/miniforge3](https://hub.docker.com/r/condaforge/miniforge3) base image.
 The OS is Linux/Ubuntu.
-`conda` and `mamba` are installed in `CONDA_DIR=opt/conda`,
-and the *base* environment is activated,
 The grpc4bmi Python server,
-as well as the Python BMI specification and example
+as well as the Python BMI mappings and example
 (consisting of the *Heat* model and a BMI implementation, *BmiHeat*)
-are installed into it.
+are installed in `CONDA_DIR=/opt/conda`.
 
 ## Run
 
-Use the grpc4bmi [Docker client](https://grpc4bmi.readthedocs.io/en/latest/container/usage.html#docker)
-to access the BMI methods of the containerized model.
+Use the grpc4bmi Docker client to access the BMI methods of the containerized model.
+
 Install grpc4bmi with *pip*:
 ```
 pip install grpc4bmi
@@ -47,7 +46,7 @@ del m  # stop container cleanly
 If the image isn't found locally, it's pulled from Docker Hub
 (e.g., try substituting `IMAGE_NAME="csdms/bmi-example-python-grpc4bmi"` above).
 
-For a more in-depth example of running the *Heat* model from grpc4bmi,
+For more in-depth examples of running the *Heat* model from grpc4bmi,
 see the [examples](./examples) directory.
 
 ## Developer notes
@@ -70,7 +69,7 @@ optionally with the `latest` tag or with a version tag.
 ## What are the Basic Model Interface and grpc4bmi?
 
 The Basic Model Interface (BMI) is a set of functions for querying, modifying, running, and coupling models.
-Learn more at https://bmi.readthedocs.io/.
+Learn more at https://bmi.csdms.io/.
 
 grpc4bmi is a [gRPC](https://grpc.io/) wrapper for a model with a BMI.
 Learn more at https://grpc4bmi.readthedocs.io/.
